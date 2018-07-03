@@ -17,7 +17,7 @@ mvn install
 1. Generate a Pact (an example of a working Pact rspec can be found in the rspec folder)
 - Move the resulting pact into the pacts folder under resources
 2. Get the swagger docs for the endpoint you're testing.
-- Swagger Docs can be found at https://canvas.instructure.com/doc/api/
+- Docs can be found at https://canvas.instructure.com/doc/api/
 - Navigate to an endpoint and change the `.html` at the end of the url to `.json`
 - Example: 
   https://canvas.instructure.com/doc/api/account_notifications.html
