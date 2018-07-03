@@ -1,0 +1,41 @@
+{
+  "consumer": {
+    "name": "Generic Consumer"
+  },
+  "provider": {
+    "name": "Canvas LMS API"
+  },
+  "interactions": [
+    {
+      "providerState": null,
+      "description": "List Notifications",
+      "request": {
+        "method": "GET",
+        "path": "/api/v1/accounts/1/account_notifications",
+        "query": "",
+        "body": null
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "body": [
+          {
+            "id": 1,
+            "subject": 1,
+            "message": 1,
+            "start_at": 1,
+            "end_at": 1,
+            "icon": 1
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "swaggerpactexample",
+                "projectName": "swaggerpactexample",
+                "workingDirectory": "/Users/rcheeniyil/code/SwaggerPact/swaggerpactexample",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "swaggerpactexample",
+                "projectName": "swaggerpactexample",
+                "workingDirectory": "/Users/rcheeniyil/code/SwaggerPact/swaggerpactexample",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

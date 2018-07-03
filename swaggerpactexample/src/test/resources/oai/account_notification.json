@@ -1,0 +1,322 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "canvas.instructure.com",
+    "version": "1.0"
+  },
+  "host": "canvas.instructure.com",
+  "basePath": "/api",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v1/accounts/{account_id}/account_notifications": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/AccountNotification"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "description": "Returns a list of all global notifications in the account for the current user\nAny notifications that have been closed by the user will not be returned",
+        "operationId": "index_of_active_global_notification_for_user",
+        "summary": "Index of active global notification for the user"
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The subject of the notification.",
+            "in": "formData",
+            "name": "account_notification[subject]",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The message body of the notification.",
+            "in": "formData",
+            "name": "account_notification[message]",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The start date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
+            "format": "date-time",
+            "in": "formData",
+            "name": "account_notification[start_at]",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
+            "format": "date-time",
+            "in": "formData",
+            "name": "account_notification[end_at]",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The icon to display with the notification.\nNote: Defaults to warning.",
+            "enum": [
+              "warning",
+              "information",
+              "question",
+              "error",
+              "calendar"
+            ],
+            "in": "formData",
+            "name": "account_notification[icon]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The role(s) to send global notification to.  Note:  ommitting this field will send to everyone\nExample:\n  account_notification_roles: [\"StudentEnrollment\", \"TeacherEnrollment\"]",
+            "in": "formData",
+            "items": {
+              "type": "string"
+            },
+            "name": "account_notification_roles",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified"
+          }
+        },
+        "description": "Create and return a new global notification for an account.",
+        "operationId": "create_global_notification",
+        "summary": "Create a global notification"
+      }
+    },
+    "/v1/accounts/{account_id}/account_notifications/{id}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified",
+            "schema": {
+              "$ref": "#/definitions/AccountNotification"
+            }
+          }
+        },
+        "description": "If the current user no long wants to see this notification it can be excused with this call",
+        "operationId": "close_notification_for_user",
+        "summary": "Close notification for user"
+      },
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified",
+            "schema": {
+              "$ref": "#/definitions/AccountNotification"
+            }
+          }
+        },
+        "description": "Returns a global notification for the current user\nA notification that has been closed by the user will not be returned",
+        "operationId": "show_global_notification",
+        "summary": "Show a global notification"
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The subject of the notification.",
+            "in": "formData",
+            "name": "account_notification[subject]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The message body of the notification.",
+            "in": "formData",
+            "name": "account_notification[message]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The start date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
+            "format": "date-time",
+            "in": "formData",
+            "name": "account_notification[start_at]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The end date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
+            "format": "date-time",
+            "in": "formData",
+            "name": "account_notification[end_at]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The icon to display with the notification.",
+            "enum": [
+              "warning",
+              "information",
+              "question",
+              "error",
+              "calendar"
+            ],
+            "in": "formData",
+            "name": "account_notification[icon]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The role(s) to send global notification to.  Note:  ommitting this field will send to everyone\nExample:\n  account_notification_roles: [\"StudentEnrollment\", \"TeacherEnrollment\"]",
+            "in": "formData",
+            "items": {
+              "type": "string"
+            },
+            "name": "account_notification_roles",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified"
+          }
+        },
+        "description": "Update global notification for an account.",
+        "operationId": "update_global_notification",
+        "summary": "Update a global notification"
+      }
+    }
+  },
+  "definitions": {
+    "AccountNotification": {
+      "properties": {
+        "end_at": {
+          "description": "When to expire the notification.",
+          "example": "2013-08-29T23:59:00-06:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "icon": {
+          "description": "The icon to display with the message.  Defaults to warning.",
+          "example": "information",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message to be sent in the notification.",
+          "example": "This is a test of the notification system.",
+          "type": "string"
+        },
+        "role_ids": {
+          "description": "The roles to send the notification to.  If roles is not passed it defaults to all roles",
+          "example": [
+            1
+          ],
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "roles": {
+          "description": "(Deprecated) The roles to send the notification to.  If roles is not passed it defaults to all roles",
+          "example": [
+            "StudentEnrollment"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "start_at": {
+          "description": "When to send out the notification.",
+          "example": "2013-08-28T23:59:00-06:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "subject": {
+          "description": "The subject of the notifications",
+          "example": "Attention Students",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

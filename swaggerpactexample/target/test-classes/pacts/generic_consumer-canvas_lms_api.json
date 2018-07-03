@@ -1,0 +1,108 @@
+{
+  "consumer": {
+    "name": "Generic Consumer"
+  },
+  "provider": {
+    "name": "Canvas LMS API"
+  },
+  "interactions": [
+    {
+      "description": "List Notifications",
+      "providerState": "a user with many notifications",
+      "request": {
+        "method": "get",
+        "path": "/api/v1/accounts/1/account_notifications",
+        "query": "",
+        "headers": {
+          "Authorization": "Bearer some_token",
+          "Connection": "close",
+          "Host": "localhost:1234",
+          "Version": "HTTP/1.1"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "subject": "something",
+            "message": "another",
+            "start_at": "2013-08-28T23:59:00-06:00",
+            "end_at": "2013-08-28T23:59:00-06:00",
+            "icon": "icon_sent"
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "Show Notification",
+      "providerState": "a user with many notifications",
+      "request": {
+        "method": "get",
+        "path": "/api/v1/accounts/1/account_notifications/1",
+        "query": "",
+        "headers": {
+          "Authorization": "Bearer some_token",
+          "Connection": "close",
+          "Host": "localhost:1234",
+          "Version": "HTTP/1.1"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "subject": "something",
+          "message": "another",
+          "start_at": "2013-08-28T23:59:00-06:00",
+          "end_at": "2013-08-28T23:59:00-06:00",
+          "icon": "icon_sent"
+        }
+      }
+    },
+    {
+      "description": "Delete Notification",
+      "providerState": "a user with many notifications",
+      "request": {
+        "method": "delete",
+        "path": "/api/v1/accounts/1/account_notifications/3",
+        "query": "",
+        "headers": {
+          "Authorization": "Bearer some_token",
+          "Connection": "close",
+          "Host": "localhost:1234",
+          "Version": "HTTP/1.1"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "subject": "something",
+          "message": "another",
+          "start_at": "2013-08-28T23:59:00-06:00",
+          "end_at": "2013-08-28T23:59:00-06:00",
+          "icon": "icon_sent"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
