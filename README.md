@@ -31,7 +31,7 @@ mvn install
 5. Reference one of the existing tests and write a test that will validate the swagger spec.
 
 # Things to Watch out for
-1. Be very cognisant of the return type header. The parser used by the SwaggerPactValidator uses this to discover the expected response body.
+1. Be very cognisant of the response Content-Type header in your pact. The parser used by the SwaggerPactValidator uses this to discover the expected response body.
 2. To be added
 
 # TODO
