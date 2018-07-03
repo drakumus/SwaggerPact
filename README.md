@@ -28,7 +28,7 @@ mvn install
 - The URL you now have is a Swagger 1.2 Doc. In order to conver to a Swagger 2.0 doc run `npm install -g api-spec-converter`
 - run `api-spec-converter endpoint_url_here --from=swagger_1 --to=swagger_2 > swagger.json`
 4. Take the local swagger doc and move it into the oai folder under resources and reference it as your swagger JSON url
-5. Reference one of the existing tests and write a test that will validate the swagger spec.
+5. Look at one of the existing tests and write a test that will validate the pact against the swagger doc.
 
 # Things to Watch out for
 1. Be very cognisant of the response Content-Type header in your pact. The parser used by the SwaggerPactValidator uses this to discover the expected response body.
