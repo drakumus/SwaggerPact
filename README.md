@@ -12,7 +12,7 @@ I'm only using the tool that validates a local Pact JSON with a local Swagger Do
 ```bash
 mvn install
 ```
-6. Navigate to `src/test/instructure/swaggerpactexample/SwaggerPactCanvas.java`
+6. Navigate to `swaggerpactexample/src/test/java/com/instructure/SwaggerPactCanvas.java`
 7. Above the test class and each method with `@Test` above them you should be able to select 'Run Test'
 
 # Workflow
