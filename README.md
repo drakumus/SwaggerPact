@@ -1,5 +1,5 @@
 # SwaggerPact
-A repository for proof of concept that pact can be validated against swagger using SwaggerPactValidator
+A repository for proof of concept that pact can be validated against swagger using SwaggerPactValidator. I'm only using the tool that validates a local Pact JSON with a local Swagger Doc. This is coined by the SwaggerPactValidator as the provider side test but could also extend to consumer testing. The consumer test tool provided by the SwaggerPactValidator only supports specs written in Java. Not all capabilities for this tool have been explored with the existing tests and future tests would look at utilities provided by the tool such as validating all Consumers/Providers in a given broker. 
 
 # Getting the Project Working
 1. Clone the repo and open the swaggerpactexample folder in VSCode.
@@ -15,18 +15,18 @@ mvn install
 
 # Workflow
 1. Generate a Pact (an example of a working Pact rspec can be found in the rspec folder)
-- Move the resulting pact into the pacts folder under resources
+  - Move the resulting pact into the pacts folder under resources
 2. Get the swagger docs for the endpoint you're testing.
-- Docs can be found at https://canvas.instructure.com/doc/api/
-- Navigate to an endpoint and change the `.html` at the end of the url to `.json`
-- Example: 
+  - Docs can be found at https://canvas.instructure.com/doc/api/
+  - Navigate to an endpoint and change the `.html` at the end of the url to `.json`
+  - Example: 
   https://canvas.instructure.com/doc/api/account_notifications.html
   to
   https://canvas.instructure.com/doc/api/account_notifications.json
 3. Convert to Swagger 2.0
 
-- The URL you now have is a Swagger 1.2 Doc. In order to conver to a Swagger 2.0 doc run `npm install -g api-spec-converter`
-- run `api-spec-converter endpoint_url_here --from=swagger_1 --to=swagger_2 > swagger.json`
+  - The URL you now have is a Swagger 1.2 Doc. In order to conver to a Swagger 2.0 doc run `npm install -g api-spec-converter`
+  - run `api-spec-converter endpoint_url_here --from=swagger_1 --to=swagger_2 > swagger.json`
 4. Take the local swagger doc and move it into the oai folder under resources and reference it as your swagger JSON url
 5. Look at one of the existing tests and write a test that will validate the pact against the swagger doc.
 
