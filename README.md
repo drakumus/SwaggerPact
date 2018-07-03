@@ -1,5 +1,7 @@
 # SwaggerPact
-A repository for proof of concept that pact can be validated against swagger using SwaggerPactValidator. I'm only using the tool that validates a local Pact JSON with a local Swagger Doc. This is coined by the SwaggerPactValidator as the provider side test but could also extend to consumer testing. The consumer test tool provided by the SwaggerPactValidator only supports specs written in Java. Not all capabilities for this tool have been explored with the existing tests and future tests would look at utilities provided by the tool such as validating all Consumers/Providers in a given broker. 
+A repository for proof of concept that pact can be validated against swagger using SwaggerRequestValidator @  https://bitbucket.org/atlassian/swagger-request-validator
+
+I'm only using the tool that validates a local Pact JSON with a local Swagger Doc. This is coined by the SwaggerRequestValidator as the provider side test but could also extend to consumer testing. The consumer test tool provided by the SwaggerRequestValidator only supports specs written in Java. Not all capabilities for this tool have been explored with the existing tests and future tests would look at utilities provided by the tool such as validating all Consumers/Providers in a given broker. 
 
 # Getting the Project Working
 1. Clone the repo and open the swaggerpactexample folder in VSCode.
@@ -31,7 +33,7 @@ mvn install
 5. Look at one of the existing tests and write a test that will validate the pact against the swagger doc.
 
 # Things to Watch out for
-1. Be very cognisant of the response Content-Type header in your pact. The parser used by the SwaggerPactValidator uses this to discover the expected response body.
+1. Be very cognisant of the response Content-Type header in your pact. The parser used by the SwaggerRequestValidator uses this to discover the expected response body.
 2. To be added
 
 # TODO
