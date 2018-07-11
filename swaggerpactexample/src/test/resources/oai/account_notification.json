@@ -52,58 +52,55 @@
             "type": "string"
           },
           {
-            "description": "The subject of the notification.",
-            "in": "formData",
-            "name": "account_notification[subject]",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "The message body of the notification.",
-            "in": "formData",
-            "name": "account_notification[message]",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "The start date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
-            "format": "date-time",
-            "in": "formData",
-            "name": "account_notification[start_at]",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "The end date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
-            "format": "date-time",
-            "in": "formData",
-            "name": "account_notification[end_at]",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "The icon to display with the notification.\nNote: Defaults to warning.",
-            "enum": [
-              "warning",
-              "information",
-              "question",
-              "error",
-              "calendar"
-            ],
-            "in": "formData",
-            "name": "account_notification[icon]",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "The role(s) to send global notification to.  Note:  ommitting this field will send to everyone\nExample:\n  account_notification_roles: [\"StudentEnrollment\", \"TeacherEnrollment\"]",
-            "in": "formData",
-            "items": {
-              "type": "string"
-            },
-            "name": "account_notification_roles",
-            "required": false,
-            "type": "array"
+            "in": "body",
+            "name": "some name",
+            "description": "some description",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "account_notification": {
+                  "properties": {
+                    "subject": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "start_at": {
+                      "type": "string"
+                    },
+                    "end_at": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "enum": [
+                        "warning",
+                        "information",
+                        "question",
+                        "error",
+                        "calendar"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "subject",
+                    "message",
+                    "start_at",
+                    "end_at"
+                  ]
+                },
+                "account_notification_roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "account_notification"
+              ]
+            }
           }
         ],
         "responses": {
@@ -113,7 +110,10 @@
         },
         "description": "Create and return a new global notification for an account.",
         "operationId": "create_global_notification",
-        "summary": "Create a global notification"
+        "summary": "Create a global notification",
+        "consumes": [
+          "application/json"
+        ]
       }
     },
     "/v1/accounts/{account_id}/account_notifications/{id}": {
@@ -201,58 +201,46 @@
             "type": "string"
           },
           {
-            "description": "The subject of the notification.",
-            "in": "formData",
-            "name": "account_notification[subject]",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "The message body of the notification.",
-            "in": "formData",
-            "name": "account_notification[message]",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "The start date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
-            "format": "date-time",
-            "in": "formData",
-            "name": "account_notification[start_at]",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "The end date and time of the notification in ISO8601 format.\ne.g. 2014-01-01T01:00Z",
-            "format": "date-time",
-            "in": "formData",
-            "name": "account_notification[end_at]",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "The icon to display with the notification.",
-            "enum": [
-              "warning",
-              "information",
-              "question",
-              "error",
-              "calendar"
-            ],
-            "in": "formData",
-            "name": "account_notification[icon]",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "The role(s) to send global notification to.  Note:  ommitting this field will send to everyone\nExample:\n  account_notification_roles: [\"StudentEnrollment\", \"TeacherEnrollment\"]",
-            "in": "formData",
-            "items": {
-              "type": "string"
-            },
-            "name": "account_notification_roles",
-            "required": false,
-            "type": "array"
+            "in": "body",
+            "name": "some name",
+            "description": "some description",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "account_notification": {
+                  "properties": {
+                    "subject": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "start_at": {
+                      "type": "string"
+                    },
+                    "end_at": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "enum": [
+                        "warning",
+                        "information",
+                        "question",
+                        "error",
+                        "calendar"
+                      ]
+                    }
+                  }
+                },
+                "account_notification_roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -262,7 +250,10 @@
         },
         "description": "Update global notification for an account.",
         "operationId": "update_global_notification",
-        "summary": "Update a global notification"
+        "summary": "Update a global notification",
+        "consumes": [
+          "application/json"
+        ]
       }
     }
   },

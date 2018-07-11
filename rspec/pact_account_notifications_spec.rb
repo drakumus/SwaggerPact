@@ -129,4 +129,98 @@ describe 'Account Notifications', :pact do
       expect(response['message']).to eq 'another'
     end
   end
+
+  context 'Post Notification' do
+    it 'should return JSON body' do
+      canvas_lms_api.given('a user with many notifications').
+        upon_receiving('Post Notification').
+        with(
+          method: :post,
+          headers: {
+            'Authorization': 'Bearer some_token',
+            'Auth-User': 'Admin1',
+            'Connection': 'close',
+            'Host': PactConfig.mock_provider_service_base_uri,
+            'Version': 'HTTP/1.1',
+            'Content-Type': 'application/json'
+          },
+          'path' => "/api/v1/accounts/2/account_notifications",
+          'body' =>
+          {
+            'account_notification':
+            {
+              'subject': 'New notification',
+              'start_at': '2014-01-01T00:00:00Z',
+              'end_at': '2014-01-02T00:00:00Z',
+              'message': 'This is a notification'
+            }
+          },
+          query: ''
+        ).
+        will_respond_with(
+          status: 200,
+          body: Pact.like(
+            {
+              'id': 1,
+              'subject': 'something',
+              'message': 'another',
+              'start_at': '2014-01-01T00:00:00Z',
+              'end_at': '2014-01-02T00:00:00Z',
+              'icon': 'icon_sent'
+            }
+          )
+        )
+      notifications_api.authenticate_as_user('Admin1')
+      response = notifications_api.create_account_notification(2)
+      expect(response['subject']).to eq 'something'
+      expect(response['message']).to eq 'another'
+    end
+  end
+
+  context 'Update Notification' do
+    it 'should return JSON body' do
+      canvas_lms_api.given('a user with many notifications').
+        upon_receiving('Update Notification').
+        with(
+          method: :put,
+          headers: {
+            'Authorization': 'Bearer some_token',
+            'Auth-User': 'Admin1',
+            'Connection': 'close',
+            'Host': PactConfig.mock_provider_service_base_uri,
+            'Version': 'HTTP/1.1',
+            'Content-Type': 'application/json'
+          },
+          'path' => "/api/v1/accounts/2/account_notifications/1",
+          'body' =>
+          {
+            # make sure the contents of account_notification matches the one in your API Client
+            'account_notification':
+            {
+              'subject': 'Updated notification',
+              'start_at': '2014-01-01T00:00:00Z',
+              'end_at': '2014-01-02T00:00:00Z',
+              'message': 'This is an updated notification'
+            }
+          },
+          query: ''
+        ).
+        will_respond_with(
+          status: 200,
+          body: Pact.like(
+            {
+              'subject': 'something',
+              'message': 'another',
+              'start_at': '2014-01-01T00:00:00Z',
+              'end_at': '2014-01-02T00:00:00Z',
+              'icon': 'icon_sent'
+            }
+          )
+        )
+      notifications_api.authenticate_as_user('Admin1')
+      response = notifications_api.update_account_notification(2,1)
+      expect(response['subject']).to eq 'something'
+      expect(response['message']).to eq 'another'
+    end
+  end
 end

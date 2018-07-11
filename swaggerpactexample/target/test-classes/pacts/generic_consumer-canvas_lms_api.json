@@ -98,6 +98,91 @@
           "icon": "icon_sent"
         }
       }
+    },
+    {
+      "description": "Post Notification",
+      "providerState": "a user with many notifications",
+      "request": {
+        "method": "post",
+        "path": "/api/v1/accounts/2/account_notifications",
+        "query": "",
+        "headers": {
+          "Authorization": "Bearer some_token",
+          "Auth-User": "Admin1",
+          "Connection": "close",
+          "Host": "localhost:1234",
+          "Version": "HTTP/1.1",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "account_notification": {
+            "subject": "New notification",
+            "start_at": "2014-01-01T00:00:00Z",
+            "end_at": "2014-01-02T00:00:00Z",
+            "message": "This is a notification"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "id": 1,
+          "subject": "something",
+          "message": "another",
+          "start_at": "2014-01-01T00:00:00Z",
+          "end_at": "2014-01-02T00:00:00Z",
+          "icon": "icon_sent"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "Update Notification",
+      "providerState": "a user with many notifications",
+      "request": {
+        "method": "put",
+        "path": "/api/v1/accounts/2/account_notifications/1",
+        "query": "",
+        "headers": {
+          "Authorization": "Bearer some_token",
+          "Auth-User": "Admin1",
+          "Connection": "close",
+          "Host": "localhost:1234",
+          "Version": "HTTP/1.1",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "account_notification": {
+            "subject": "Updated notification",
+            "start_at": "2014-01-01T00:00:00Z",
+            "end_at": "2014-01-02T00:00:00Z",
+            "message": "This is an updated notification"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "subject": "something",
+          "message": "another",
+          "start_at": "2014-01-01T00:00:00Z",
+          "end_at": "2014-01-02T00:00:00Z",
+          "icon": "icon_sent"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
     }
   ],
   "metadata": {
