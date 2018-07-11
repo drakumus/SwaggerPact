@@ -39,6 +39,6 @@ mvn install
 # TODO
 **Done**
 
-~~*Add example for post and update.* 
+~~*Add example for post and update.*~~
 
 ~~The reason these two widely used methods have yet to be included is because canvas-lms swagger docs require the body in the form of multipart/form data. I've queried pact to see if there is support for this in languages other than Java/JVM. If Pact does not have support multipart/form data then the docs can be changed to require a JavaScript body instead.~~
